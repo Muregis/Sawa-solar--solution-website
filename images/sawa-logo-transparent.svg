@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 90" width="200" height="90">
+
+  <!-- ── ICON ROW ── -->
+  <!-- Sun -->
+  <circle cx="100" cy="18" r="9" fill="#E8720C"/>
+  <line x1="100" y1="4"  x2="100" y2="7"  stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="113" y1="7"  x2="111" y2="9"  stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="118" y1="18" x2="115" y2="18" stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="87"  y1="7"  x2="89"  y2="9"  stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="82"  y1="18" x2="85"  y2="18" stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="113" y1="29" x2="111" y2="27" stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="87"  y1="29" x2="89"  y2="27" stroke="#E8720C" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- House -->
+  <path d="M72 44 L100 28 L128 44 L128 60 L72 60 Z" fill="#1A4731"/>
+  <!-- Solar panel on roof -->
+  <path d="M80 40 L100 28 L120 40 Z" fill="#E8720C" opacity="0.88"/>
+  <!-- Panel grid -->
+  <line x1="100" y1="28" x2="100" y2="40" stroke="white" stroke-width="0.8" opacity="0.5"/>
+  <line x1="80"  y1="35" x2="120" y2="35" stroke="white" stroke-width="0.8" opacity="0.5"/>
+  <!-- Door -->
+  <rect x="93" y="50" width="14" height="10" rx="1.5" fill="white" opacity="0.2"/>
+
+  <!-- ── TEXT ROW ── -->
+  <!-- SAWA REPAIRS -->
+  <text
+    x="100" y="74"
+    font-family="Montserrat, Arial Black, sans-serif"
+    font-weight="900"
+    font-size="16"
+    letter-spacing="3"
+    fill="#1A4731"
+    text-anchor="middle">SAWA REPAIRS</text>
+
+  <!-- Tagline -->
+  <text
+    x="100" y="86"
+    font-family="Montserrat, Arial, sans-serif"
+    font-weight="600"
+    font-size="6.5"
+    letter-spacing="2"
+    fill="#E8720C"
+    text-anchor="middle">SOLAR &amp; CONSTRUCTION · KENYA</text>
+
+</svg>
