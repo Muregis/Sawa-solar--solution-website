@@ -1,5 +1,5 @@
 /* ============================================================
-   SAWA REPAIRS & SOLUTIONS — Main JavaScript
+    SAWA REPAIRS & SOLUTIONS — Main JavaScript (Fixed)
    ============================================================ */
 
 /* ── NAV SHADOW ON SCROLL ── */
@@ -12,13 +12,10 @@ window.addEventListener('scroll', () => {
 const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-
     entry.target.classList.add('visible');
     observer.unobserve(entry.target);
   });
-}, {
-  threshold: 0.15
-});
+}, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal').forEach(el => {
   revealObserver.observe(el);
@@ -26,8 +23,6 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 /* ── MOBILE MENU ── */
 const navLinksEl = document.querySelector('.nav-links');
-const hamburger = document.querySelector('.hamburger');
-
 function toggleMenu() {
   navLinksEl.classList.toggle('mobile-open');
   document.body.classList.toggle('menu-open');
@@ -51,6 +46,38 @@ window.addEventListener('resize', () => {
 const galleryImages = [];
 let currentIndex = 0;
 
+function openLightbox(index) {
+  if (!galleryImages.length) return;
+  currentIndex = index;
+  updateLightbox();
+  lightboxEl.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightbox() {
+  const item = galleryImages[currentIndex];
+  document.getElementById('lightbox-img').src = item.src;
+  document.getElementById('lightbox-img').alt = item.alt;
+  document.getElementById('lightbox-caption').textContent = item.caption;
+  document.getElementById('lightbox-counter').textContent =
+    (currentIndex + 1) + ' / ' + galleryImages.length;
+}
+
+function lightboxNext() {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  updateLightbox();
+}
+
+function lightboxPrev() {
+  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  updateLightbox();
+}
+
+function closeLightbox() {
+  lightboxEl.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 const lightboxEl = document.createElement('div');
 lightboxEl.className = 'lightbox';
 lightboxEl.innerHTML = `
@@ -70,33 +97,8 @@ document.querySelectorAll('.gallery-item img').forEach((img, i) => {
   img.addEventListener('click', () => openLightbox(i));
 });
 
-function openLightbox(index) {
-  if (!galleryImages.length) return;
-  currentIndex = index;
-  updateLightbox();
-  lightboxEl.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function updateLightbox() {
-  const item = galleryImages[currentIndex];
-  document.getElementById('lightbox-img').src = item.src;
-  document.getElementById('lightbox-img').alt = item.alt;
-  document.getElementById('lightbox-caption').textContent = item.caption;
-  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
-}
-function lightboxNext() {
-  currentIndex = (currentIndex + 1) % galleryImages.length;
-  updateLightbox();
-}
-function lightboxPrev() {
-  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-  updateLightbox();
-}
-function closeLightbox() {
-  lightboxEl.classList.remove('active');
-  document.body.style.overflow = '';
-}
 lightboxEl.addEventListener('click', (e) => { if (e.target === lightboxEl) closeLightbox(); });
+
 document.addEventListener('keydown', (e) => {
   if (!lightboxEl.classList.contains('active')) return;
   if (e.key === 'Escape') closeLightbox();
@@ -108,7 +110,10 @@ document.addEventListener('keydown', (e) => {
 const galleryItems = document.querySelectorAll('.gallery-item');
 const galleryObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); galleryObs.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      galleryObs.unobserve(e.target);
+    }
   });
 }, { threshold: 0.1 });
 galleryItems.forEach(item => galleryObs.observe(item));
@@ -117,7 +122,6 @@ galleryItems.forEach(item => galleryObs.observe(item));
 const statsObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-
     const el = entry.target;
     const target = +el.dataset.target;
     const duration = 1200;
@@ -126,7 +130,6 @@ const statsObserver = new IntersectionObserver((entries, observer) => {
     function animate(now) {
       const progress = Math.min((now - startTime) / duration, 1);
       el.textContent = Math.floor(progress * target);
-
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
@@ -150,23 +153,23 @@ function submitForm(event) {
   const form = event.target;
   const btn = form.querySelector('.form-submit');
 
-  btn.textContent = "Sending...";
+  btn.textContent = 'Sending...';
   btn.disabled = true;
 
   fetch(form.action, {
-    method: "POST",
+    method: 'POST',
     body: new FormData(form),
   })
   .then(() => {
-    btn.textContent = "✅ Request Sent!";
+    btn.textContent = '✅ Request Sent!';
     form.reset();
   })
   .catch(() => {
-    btn.textContent = "❌ Failed. Try again.";
+    btn.textContent = '❌ Failed. Try again.';
   })
   .finally(() => {
     setTimeout(() => {
-      btn.textContent = "📋 Send My Request →";
+      btn.textContent = '📋 Send My Request →';
       btn.disabled = false;
     }, 4000);
   });
@@ -177,7 +180,9 @@ const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
   navLinks.forEach(link => {
     link.style.color = link.getAttribute('href') === '#' + current ? 'var(--green)' : '';
   });
