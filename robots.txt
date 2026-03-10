@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://sawarepairs.netlify.app/sitemap.xml
+Sitemap: https://sawa-solar-solution-website.vercel.app/sitemap.xml
 
 User-agent: Googlebot
 Allow: /
