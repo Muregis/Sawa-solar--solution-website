@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <!-- Ultrasun Logo - Sun icon with rays -->
+  <defs>
+    <linearGradient id="usGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8C42"/>
+      <stop offset="100%" style="stop-color:#E31837"/>
+    </linearGradient>
+  </defs>
+  <!-- Sun circle -->
+  <circle cx="28" cy="30" r="16" fill="url(#usGrad)"/>
+  <circle cx="28" cy="30" r="10" fill="#FFF"/>
+  <!-- Rays -->
+  <g stroke="#FF8C42" stroke-width="2.5" stroke-linecap="round">
+    <line x1="28" y1="6" x2="28" y2="11"/>
+    <line x1="28" y1="49" x2="28" y2="54"/>
+    <line x1="6" y1="30" x2="11" y2="30"/>
+    <line x1="45" y1="30" x2="50" y2="30"/>
+    <line x1="12.5" y1="12.5" x2="16" y2="16"/>
+    <line x1="40" y1="44" x2="43.5" y2="47.5"/>
+    <line x1="12.5" y1="47.5" x2="16" y2="44"/>
+    <line x1="40" y1="16" x2="43.5" y2="12.5"/>
+  </g>
+  <!-- Brand name -->
+  <text x="58" y="38" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#E31837" letter-spacing="-0.5">ULTRASUN</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60">
+  <!-- Kwikot Logo -->
+  <rect x="5" y="10" width="50" height="40" rx="5" fill="#C8102E"/>
+  <text x="30" y="38" font-family="Arial, sans-serif" font-size="28" font-weight="900" fill="#FFF" text-anchor="middle">K</text>
+  <text x="65" y="38" font-family="Arial, sans-serif" font-size="26" font-weight="800" fill="#C8102E">KWIKOT</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <!-- Chromagen Logo -->
+  <defs>
+    <linearGradient id="cgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00A0E3"/>
+      <stop offset="100%" style="stop-color:#0077B6"/>
+    </linearGradient>
+  </defs>
+  <!-- Water drop icon -->
+  <path d="M28 8 C28 8, 12 22, 12 36 C12 46, 19 54, 28 54 C37 54, 44 46, 44 36 C44 22, 28 8, 28 8Z" fill="url(#cgGrad)"/>
+  <ellipse cx="22" cy="32" rx="4" ry="6" fill="#FFF" opacity="0.6"/>
+  <!-- Brand name -->
+  <text x="58" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#00A0E3">CHROMAGEN</text>
+</svg>
