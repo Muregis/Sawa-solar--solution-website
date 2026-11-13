@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Maintenance for Diaspora Landlords | Sawa Repairs Nairobi</title>
+  <meta name="description" content="Own property in Nairobi but live abroad? Sawa Repairs provides remote-approved repairs, documented job reports, WhatsApp video updates, and quarterly video inspections for diaspora landlords.">
+  <meta name="keywords" content="property maintenance Kenya from abroad, diaspora landlord Kenya, property management Nairobi remote, Kenya property repairs abroad, Nairobi landlord UK">
+  <link rel="canonical" href="https://sawarepairs.co.ke/diaspora.html">
+  <link rel="icon" type="image/svg+xml" href="images/sawa-logo-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="new-style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Diaspora Landlord Property Maintenance",
+    "provider": { "@type": "LocalBusiness", "name": "Sawa Repairs & Solutions" },
+    "description": "Remote property maintenance and inspection services for Kenyan diaspora landlords with properties in Nairobi, Kenya.",
+    "areaServed": "Nairobi, Kenya",
+    "audience": { "@type": "Audience", "audienceType": "Diaspora landlords living abroad" }
+  }
+  </script>
+
+  <style>
+    /* ── DIASPORA PAGE EXTRAS ── */
+
+    /* Pain cards — white with orange left border */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .pain-card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--orange);
+      padding: 2rem 1.6rem;
+      transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    }
+    .pain-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+    .pain-icon {
+      font-size: 1.9rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .pain-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .pain-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* Process steps — diaspora variant (5 steps) */
+    .diaspora-process {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 3rem;
+    }
+    .diaspora-process::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--green));
+      z-index: 0;
+    }
+    .d-step {
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .d-step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #f97316);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.4rem;
+      box-shadow: 0 8px 28px rgba(232,114,12,0.45);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .d-step:hover .d-step-num {
+      transform: scale(1.12);
+      box-shadow: 0 14px 36px rgba(232,114,12,0.65);
+    }
+    .d-step h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.6rem;
+    }
+    .d-step p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* Diaspora pricing cards */
+    .diaspora-pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .d-price-card {
+      background: white;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    }
+    .d-price-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 64px rgba(0,0,0,0.1);
+    }
+    .d-price-card.featured {
+      border-color: var(--orange);
+      box-shadow: 0 12px 48px rgba(232,114,12,0.15);
+    }
+    .d-price-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .d-price-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .d-price-amount {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
+    }
+    .d-price-amount span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .d-price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .d-price-includes {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.8rem 0;
+    }
+    .d-price-includes li {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      padding: 0.42rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.5;
+    }
+    .d-price-includes li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .d-price-tagline {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+
+    /* CTA band secondary note */
+    .cta-hours-note {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+    }
+
+    /* Hero action buttons row */
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--orange);
+      color: white;
+      padding: 0.9rem 1.9rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s var(--ease);
+      box-shadow: 0 6px 20px rgba(232,114,12,0.4);
+    }
+    .btn-hero-primary:hover {
+      background: #d4610a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(232,114,12,0.55);
+    }
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      padding: 0.9rem 1.9rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: all 0.25s var(--ease);
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.5);
+      color: white;
+    }
+
+    /* Section background alternation */
+    .section-light { background: var(--warm-white); }
+    .section-cream { background: var(--cream); }
+    .section-dark  { background: var(--dark); }
+
+    /* Responsive overrides */
+    @media (max-width: 900px) {
+      .pain-grid { grid-template-columns: 1fr 1fr; }
+      .diaspora-process { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .diaspora-process::before { display: none; }
+      .diaspora-pricing-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .pain-grid { grid-template-columns: 1fr; }
+      .diaspora-process { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-item"><i class="fas fa-phone"></i><a href="tel:+254797846126">0797 846 126</a></div>
+    <div class="topbar-item"><i class="fas fa-envelope"></i><a href="mailto:inquiriestosawarepairs@gmail.com">inquiriestosawarepairs@gmail.com</a></div>
+    <div class="topbar-item"><i class="fas fa-clock"></i> Mon–Sat: 7am – 7pm</div>
+  </div>
+  <div class="topbar-right">
+    <a href="https://www.facebook.com/sawarepairs" class="topbar-social" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/sawa_home.repairs" class="topbar-social" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/254797846126" class="topbar-social" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo"><a href="index.html"><img src="images/sawa-logo-transparent.svg" alt="Sawa Repairs logo"></a></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="nav-dropdown">
+        <a href="services.html">Services</a>
+        <div class="dropdown-menu">
+          <a href="services.html#repairs"><i class="fas fa-wrench"></i> 🔧 Building Repairs &amp; Maintenance</a>
+          <a href="services.html#property"><i class="fas fa-building"></i> 🏠 Property Management</a>
+          <a href="services.html#construction"><i class="fas fa-hard-hat"></i> 🏗️ General Construction</a>
+          <a href="services.html#solar-water"><i class="fas fa-sun"></i> ☀️ Solar Water Heaters</a>
+          <a href="services.html#backup-power"><i class="fas fa-battery-full"></i> 🔋 Solar Panels &amp; Backup Power</a>
+          <a href="services.html#supply"><i class="fas fa-boxes"></i> 📦 Materials Supply</a>
+        </div>
+      </li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="diaspora.html" class="active">Diaspora</a></li>
+      <li><a href="https://wa.me/254797846126">Contact</a></li>
+      <li><a href="https://wa.me/254797846126" class="nav-cta">Get Free Quote</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span class="current">For Diaspora Landlords</span>
+    </div>
+    <div class="section-tag" style="color:rgba(255,255,255,0.7); margin-bottom:1rem;">🌍 For Kenyan Landlords Living Abroad</div>
+    <h1>Your Property, Maintained. <em>You, in Control.</em></h1>
+    <p>You shouldn't need to fly home to verify a repair. We document every job, send WhatsApp video updates, and run quarterly video inspections — so you can approve, not just hope.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/254797846126?text=Hello%20Sawa%2C%20I%27m%20a%20diaspora%20landlord%20and%20need%20help%20with%20my%20Nairobi%20property" class="btn-hero-primary" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Start a Conversation
+      </a>
+      <a href="pricing.html" class="btn-hero-secondary">See Pricing →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 1 — THE PROBLEM (Pain Acknowledgement)
+     ══════════════════════════════════════════════════ -->
+<section class="section-light" style="padding: 6rem 5vw;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="reveal">
+      <div class="section-tag" style="justify-content: center;">The Reality</div>
+      <h2 class="section-title">What Every Diaspora Landlord <em>Knows</em></h2>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-icon">😤</span>
+        <h4>The job "done" that wasn't</h4>
+        <p>Your caretaker says it's fixed. Your tenant says it's still leaking. You're 5,000 miles away with no way to know who's right.</p>
+      </div>
+      <div class="pain-card reveal reveal-d1">
+        <span class="pain-icon">💸</span>
+        <h4>Quoted one price, charged another</h4>
+        <p>Contractors know you're abroad. Quotes inflate. Invoices grow. And you can't walk around with them to check the work.</p>
+      </div>
+      <div class="pain-card reveal reveal-d2">
+        <span class="pain-icon">📵</span>
+        <h4>Silence when you need answers</h4>
+        <p>You send a WhatsApp. You wait two days. Your tenant is on the phone daily. You still don't know what's happening.</p>
+      </div>
+      <div class="pain-card reveal reveal-d3">
+        <span class="pain-icon">📋</span>
+        <h4>No records, no history</h4>
+        <p>What was fixed three years ago? What's the boiler age? Which contractor did the last roof? Nobody knows. Property history disappears.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 2 — HOW SAWA WORKS FOR DIASPORA
+     ══════════════════════════════════════════════════ -->
+<section class="section-dark" id="how-it-works" style="padding: 6rem 5vw;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;" class="reveal">
+      <div class="section-tag" style="color: var(--green-light); justify-content: center;">Our Process</div>
+      <div class="section-tag::before" style="background: var(--green-light);"></div>
+      <h2 class="section-title" style="color: white;">How We Work for <em>Diaspora Landlords</em></h2>
+      <p style="color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.8; font-weight: 300; margin-top: 0.8rem;">
+        We've structured everything around the reality that you're not in the country.
+      </p>
+    </div>
+
+    <div class="diaspora-process">
+      <div class="d-step reveal">
+        <div class="d-step-num">1</div>
+        <h4>WhatsApp First</h4>
+        <p>Message us your situation. We respond within 4 hours during business hours (EAT). We'll ask the right questions and tell you exactly what we think is needed — honestly.</p>
+      </div>
+      <div class="d-step reveal reveal-d1">
+        <div class="d-step-num">2</div>
+        <h4>We Assess, You Approve</h4>
+        <p>We visit your property, assess the issue, and send you a written quote with photos before we touch anything. No work starts without your explicit approval.</p>
+      </div>
+      <div class="d-step reveal reveal-d2">
+        <div class="d-step-num">3</div>
+        <h4>Repair with Video Updates</h4>
+        <p>During the job, we send you WhatsApp video updates at key stages — before, during, and after. You see the problem and the fix, in real time.</p>
+      </div>
+      <div class="d-step reveal reveal-d3">
+        <div class="d-step-num">4</div>
+        <h4>Documented Report</h4>
+        <p>Within 24 hours of job completion, you receive a written report: what was done, parts used with receipts, photos of the completed work, and a 30-day workmanship guarantee.</p>
+      </div>
+      <div class="d-step reveal reveal-d4">
+        <div class="d-step-num">5</div>
+        <h4>Quarterly Video Inspection</h4>
+        <p>On our monthly retainer, we conduct a full video walkthrough of your property each quarter. Sent directly to you. You'll know your property better than your caretaker does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 3 — DIASPORA PRICING
+     ══════════════════════════════════════════════════ -->
+<section class="section-light" style="padding: 6rem 5vw;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="reveal">
+      <div class="section-tag" style="justify-content: center;">Transparent Pricing</div>
+      <h2 class="section-title">What This <em>Costs</em></h2>
+    </div>
+
+    <div class="diaspora-pricing-grid">
+
+      <!-- Card 1: Pay Per Job -->
+      <div class="d-price-card reveal">
+        <div class="d-price-title">Pay Per Job</div>
+        <div class="d-price-amount">KES 1,500 <span>call-out fee</span></div>
+        <p class="d-price-note">Deducted from your repair cost if you proceed. Labour at standard rates — see our pricing guide.</p>
+        <ul class="d-price-includes">
+          <li>Written job report on completion</li>
+          <li>WhatsApp video updates during repair</li>
+          <li>Supplier receipt documentation</li>
+          <li>30-day workmanship guarantee</li>
+          <li>No approval, no work policy</li>
+        </ul>
+        <a href="https://wa.me/254797846126?text=Hello%20Sawa%2C%20I%27m%20a%20diaspora%20landlord%20and%20need%20help%20with%20my%20Nairobi%20property" class="btn-primary" target="_blank" rel="noopener" style="display:block; text-align:center;">
+          Book a Call-Out →
+        </a>
+      </div>
+
+      <!-- Card 2: Monthly Retainer -->
+      <div class="d-price-card featured reveal reveal-d1">
+        <div class="d-price-badge">⭐ Recommended for Diaspora</div>
+        <div class="d-price-title">Monthly Retainer</div>
+        <div class="d-price-amount">KES 8,000 <span>/ month</span></div>
+        <p class="d-price-note">From — final price depends on property size and location.</p>
+        <ul class="d-price-includes">
+          <li>Monthly property inspection</li>
+          <li>Priority emergency response</li>
+          <li>Quarterly video inspection (sent to you)</li>
+          <li>Unlimited WhatsApp support</li>
+          <li>Monthly landlord report</li>
+          <li>Repair coordination included</li>
+        </ul>
+        <div class="d-price-tagline">"One fixed monthly cost. No surprises."</div>
+        <a href="https://wa.me/254797846126?text=Hello%20Sawa%2C%20I%27m%20interested%20in%20a%20diaspora%20retainer%20for%20my%20Nairobi%20property" class="btn-primary" target="_blank" rel="noopener" style="display:block; text-align:center;">
+          Get a Retainer Quote →
+        </a>
+      </div>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem; font-size: 0.84rem; color: var(--text-muted);">
+      Want the full breakdown? <a href="pricing.html" style="color: var(--orange); font-weight: 600;">View our complete pricing guide →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 4 — TRUST SIGNALS
+     ══════════════════════════════════════════════════ -->
+<section class="section-cream" style="padding: 6rem 5vw;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="reveal">
+      <div class="section-tag" style="justify-content: center;">Why Sawa</div>
+      <h2 class="section-title">Why Diaspora Landlords <em>Choose Sawa</em></h2>
+    </div>
+
+    <div class="why-grid" style="margin-top: 3rem;">
+      <div class="why-card reveal">
+        <span class="why-icon">🔐</span>
+        <h4>No approval, no work</h4>
+        <p>We quote before we start. If you don't approve, we don't proceed. Your money doesn't move without your sign-off.</p>
+      </div>
+      <div class="why-card reveal reveal-d1">
+        <span class="why-icon">📸</span>
+        <h4>Photo &amp; video proof of every job</h4>
+        <p>Every repair is documented with before/after photos and video. You'll never wonder if it was actually done.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <span class="why-icon">🧾</span>
+        <h4>Supplier receipts for all parts</h4>
+        <p>We show you what we paid for materials. Our margin is a fixed 20% — disclosed upfront, not hidden in an inflated quote.</p>
+      </div>
+      <div class="why-card reveal reveal-d3">
+        <span class="why-icon">📞</span>
+        <h4>Direct access to our team lead</h4>
+        <p>You WhatsApp our team lead directly — not a call centre, not a rotating junior. Same person, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 5 — FAQ FOR DIASPORA
+     ══════════════════════════════════════════════════ -->
+<section class="section-light" style="padding: 6rem 5vw;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="faq-layout">
+      <div class="faq-text reveal">
+        <div class="section-tag">Questions &amp; Answers</div>
+        <h2 class="section-title">Questions Diaspora <em>Landlords Ask</em></h2>
+        <p>These come up every time. We'd rather answer them upfront than have you wonder.</p>
+      </div>
+      <div class="faq-list reveal reveal-d1">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>How do I know the work was actually done?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>You'll receive photos, video walkthroughs, and a written report within 24 hours. For retainer clients, we conduct formal quarterly video inspections. We also welcome tenant confirmation — just give us their number.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What if my caretaker or tenant is managing things and you disagree?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>We work directly with you. If there's a conflicting instruction between you and a local manager, we follow your direction and document the disagreement. We don't take sides — we report to you.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What if something goes wrong with the repair?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>All workmanship carries a 30-day guarantee. If the same issue recurs within 30 days, we return and fix it at zero cost — and send you an updated report.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Can you help me find tenants or manage the whole property?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>We handle maintenance and inspections. For tenant-finding and rent collection, we can refer you to trusted agents we've worked with. We'll be honest about where our expertise ends.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     CTA BAND
+     ══════════════════════════════════════════════════ -->
+<div class="cta-band">
+  <div class="cta-band-glow"></div>
+  <div class="cta-band-content reveal" style="text-align: center; max-width: 680px; margin: 0 auto;">
+    <h2>Start With a <em>WhatsApp Message</em></h2>
+    <p>Tell us where your property is, what's going on, and what you need. We'll reply within 4 hours.</p>
+    <div class="cta-band-actions">
+      <a href="https://wa.me/254797846126?text=Hello%20Sawa%2C%20I%27m%20a%20diaspora%20landlord%20and%20need%20help%20with%20my%20Nairobi%20property" class="btn-primary" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Message Us Now →
+      </a>
+    </div>
+    <p class="cta-hours-note">
+      Our working hours are Mon–Sat, 7am–7pm EAT (East Africa Time).<br>
+      That's 5am–5pm UK · midnight–noon US Eastern.
+    </p>
+  </div>
+</div>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <a href="https://www.facebook.com/sawarepairs" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+  <a href="https://www.instagram.com/sawa_home.repairs" class="social-link" target="_blank"><i class="fab fa-instagram"></i> @sawa_home.repairs</a>
+  <a href="https://wa.me/254797846126" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a href="mailto:inquiriestosawarepairs@gmail.com" class="social-link"><i class="fas fa-envelope"></i> Email Us</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/sawa-logo-transparent.svg" alt="Sawa Repairs logo" class="footer-logo">
+      <p>Your trusted repairs, maintenance, and solar energy partner in Kenya.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#repairs">Building Repairs</a></li>
+      <li><a href="services.html#property">Property Management</a></li>
+      <li><a href="services.html#construction">General Construction</a></li>
+      <li><a href="services.html#solar-water">Solar Water Heaters</a></li>
+      <li><a href="services.html#backup-power">Solar Panels &amp; Backup</a></li>
+      <li><a href="services.html#supply">Materials Supply</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="projects.html">Our Projects</a></li>
+      <li><a href="pricing.html">Pricing Guide</a></li>
+      <li><a href="diaspora.html">For Diaspora Landlords</a></li>
+      <li><a href="https://wa.me/254797846126">Get a Quote</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="tel:+254797846126">0797 846 126</a></li>
+      <li><a href="https://wa.me/254797846126" target="_blank">WhatsApp Us</a></li>
+      <li><a href="mailto:inquiriestosawarepairs@gmail.com">Email Inquiries</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Sawa Repairs &amp; Solutions.</p>
+    <p>Based in <span>Kenya</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/254797846126" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+</a>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+<script src="js/script.js"></script>
+</body>
+</html>
