@@ -142,7 +142,7 @@ const statsObserver = new IntersectionObserver((entries, observer) => {
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-num').forEach(el => {
+document.querySelectorAll('.stat-num[data-target]').forEach(el => {
   statsObserver.observe(el);
 });
 
