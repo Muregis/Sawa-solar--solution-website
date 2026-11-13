@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Quote Approval | Sawa Repairs Nairobi</title>
+  <meta name="description" content="Review diagnostic findings, photo evidence, and itemized transparent labour quotes. 1-click remote approval for Nairobi and diaspora landlords.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="images/sawa-logo-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="new-style.css">
+  <style>
+    body {
+      background: #F7F5F0;
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+    .portal-nav {
+      background: var(--dark);
+      padding: 1rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .portal-nav img { height: 44px; width: auto; }
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(232,114,12,0.15);
+      border: 1px solid rgba(232,114,12,0.3);
+      color: var(--orange-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+    }
+    .approve-container {
+      max-width: 860px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 5vw;
+    }
+    .quote-hero-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.4rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+    .quote-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .quote-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .quote-property {
+      font-size: 1rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .quote-callout {
+      background: var(--warm-white);
+      border-left: 4px solid var(--orange);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      margin-bottom: 1.8rem;
+    }
+    .findings-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 2.4rem;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .photo-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .photo-cap {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      background: var(--warm-white);
+      font-weight: 500;
+      color: var(--text-mid);
+    }
+    .table-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 2.4rem;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .quote-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .quote-table th {
+      text-align: left;
+      padding: 0.8rem 0;
+      border-bottom: 2px solid var(--border);
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .quote-table td {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+    }
+    .quote-table td.amount {
+      text-align: right;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .total-box {
+      background: var(--green-pale);
+      border: 1px solid rgba(26,71,49,0.15);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .total-val {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .action-band {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      border: 2px solid var(--green);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    .action-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .btn-approve {
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 1.1rem 2.4rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 18px rgba(26,71,49,0.25);
+    }
+    .btn-approve:hover {
+      background: var(--green-mid);
+      transform: translateY(-2px);
+    }
+    .btn-discuss {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 1.1rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.25s ease;
+    }
+    .btn-discuss:hover {
+      background: #1fb558;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .action-btns { flex-direction: column; }
+      .btn-approve, .btn-discuss { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="portal-nav">
+  <a href="index.html"><img src="images/sawa-logo-transparent.svg" alt="Sawa Repairs Logo"></a>
+  <div class="portal-badge"><i class="fas fa-lock"></i> Secure Remote Quote Approval</div>
+</div>
+
+<div class="approve-container">
+
+  <!-- QUOTE HERO -->
+  <div class="quote-hero-card">
+    <div class="quote-badge"><i class="fas fa-file-invoice-dollar"></i> Work Order Estimate & Scope</div>
+    <h1 class="quote-title">Review & Approve Quote: <span id="displayQuote">#QU-2026-118</span></h1>
+    <div class="quote-property"><i class="fas fa-map-marker-alt" style="color: var(--orange);"></i> <strong>Kileleshwa Executive Villas, Unit 2A, Nairobi</strong> (Landlord Ref: DL-409)</div>
+
+    <div class="quote-callout">
+      <strong>Zero Surprise Workmanship Policy:</strong> Work begins only after you click 'Approve'. Your KES 1,500 diagnostic fee is already deducted from the total. If you decline, you pay nothing further.
+    </div>
+
+    <div>
+      <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem;">Technician Diagnostic Summary</div>
+      <p style="font-size: 0.92rem; line-height: 1.7; color: var(--text-dark);">
+        "Inspected kitchen under-sink trap. Found hairline crack on PVC waste elbow causing ongoing moisture dampening into cabinetry. Solenoid feed valve also showing mineral buildup. Recommend complete replacement with heavy-duty trap and fresh brass isolation valve."
+        <br><strong style="color: var(--green);">— Simon Karanja, Lead Field Specialist</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- EVIDENCE -->
+  <div class="findings-card">
+    <div class="section-headline"><i class="fas fa-camera"></i> Diagnostic Photo Proof</div>
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="images/gallery-3.jpg" alt="Defect Photo">
+        <div class="photo-cap">1. Hairline crack along trap weld (active seep)</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/gallery-6.jpg" alt="Cabinet moisture">
+        <div class="photo-cap">2. Wood base damp area requiring seal & dry</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEMIZED QUOTE TABLE -->
+  <div class="table-card">
+    <div class="section-headline"><i class="fas fa-list-ul"></i> Itemized Cost Breakdown</div>
+
+    <table class="quote-table">
+      <thead>
+        <tr>
+          <th>Scope / Description</th>
+          <th>Rate Type</th>
+          <th style="text-align:right;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Labour: Dismantle, Fabricate & Fit Trap</strong>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Solvent weld new PVC waste line, seal cabinet penetration, 20-min flow test</div>
+          </td>
+          <td>Standard Labour</td>
+          <td class="amount">KES 3,200</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Materials: Heavy-Duty 1.5" Trap + Brass Angle Valve</strong>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Original hardware supplier receipt will be emailed with completion report</div>
+          </td>
+          <td>At Cost</td>
+          <td class="amount">KES 1,850</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Transparent Parts Margin (+20%)</strong>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Covers sourcing time, delivery to site, and 1-year hardware warranty handling</div>
+          </td>
+          <td>Policy Margin</td>
+          <td class="amount">KES 370</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Sawa Fix Diagnostic Fee Credit</strong>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Initial diagnostic call-out refunded upon repair commencement</div>
+          </td>
+          <td style="color:#25D366; font-weight:600;">Deduction</td>
+          <td class="amount" style="color:#25D366;">- KES 1,500</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <div>
+        <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:var(--text-mid);">Net Payable Upon Completion:</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);">Includes 30-day workmanship guarantee</div>
+      </div>
+      <div class="total-val">KES 3,920</div>
+    </div>
+  </div>
+
+  <!-- APPROVAL ACTION -->
+  <div class="action-band">
+    <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--green); margin-bottom: 0.5rem;">Ready to Authorize Repair?</h3>
+    <p style="font-size: 0.9rem; color: var(--text-mid); max-width: 520px; margin: 0 auto;">
+      Clicking 'Approve' dispatches the parts from the local merchant immediately. You receive WhatsApp video progress updates during work.
+    </p>
+
+    <div class="action-btns">
+      <button class="btn-approve" id="approveBtn" onclick="approveQuote()">
+        <i class="fas fa-check-circle"></i> Approve Work Order (KES 3,920)
+      </button>
+      <a href="https://wa.me/254797846126?text=Hello%20Sawa%2C%20regarding%20quote%20QU-2026-118%2C%20I%20have%20a%20question" class="btn-discuss" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Discuss on WhatsApp
+      </a>
+    </div>
+
+    <div id="approvedMessage" style="display:none; margin-top:1.5rem; background:#DCFCE7; border:1px solid #86EFAC; color:#166534; padding:1rem; border-radius:10px; font-weight:600;">
+      ✅ Work Order Approved at <span id="approveTime"></span> EAT. Technician notified. Parts dispatched.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  if (token) {
+    document.getElementById('displayQuote').textContent = '#' + token.toUpperCase();
+  }
+
+  function approveQuote() {
+    const btn = document.getElementById('approveBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authorizing...';
+    
+    setTimeout(() => {
+      btn.style.display = 'none';
+      const msg = document.getElementById('approvedMessage');
+      const now = new Date();
+      document.getElementById('approveTime').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      msg.style.display = 'block';
+    }, 1200);
+  }
+</script>
+
+</body>
+</html>

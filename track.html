@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Work Order Tracker | Sawa Repairs Nairobi</title>
+  <meta name="description" content="Track your Sawa Repairs work order in real time. Transparent job progress, technician arrival, photo proof, parts receipts, and completion sign-off for Nairobi landlords.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="images/sawa-logo-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="new-style.css">
+  <style>
+    :root {
+      --portal-bg: #F7F5F0;
+      --card-bg: #FFFFFF;
+    }
+    body {
+      background: var(--portal-bg);
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+    .portal-nav {
+      background: var(--dark);
+      padding: 1rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .portal-nav img { height: 44px; width: auto; }
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37,211,102,0.15);
+      border: 1px solid rgba(37,211,102,0.3);
+      color: #25D366;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #25D366;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+    .tracker-container {
+      max-width: 900px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 5vw;
+    }
+    .lookup-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .lookup-input-wrap {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      gap: 0.6rem;
+    }
+    .lookup-input-wrap input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      width: 100%;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    .btn-lookup {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-lookup:hover { background: var(--orange-light); }
+    .job-header-card {
+      background: linear-gradient(135deg, var(--dark) 0%, #12281D 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .job-header-card::after {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(232,114,12,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .job-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      position: relative; z-index: 2;
+    }
+    .job-id-tag {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--orange-light);
+    }
+    .job-status-pill {
+      background: rgba(37,211,102,0.2);
+      border: 1px solid rgba(37,211,102,0.4);
+      color: #25D366;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .job-property-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      position: relative; z-index: 2;
+    }
+    .job-property-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative; z-index: 2;
+    }
+    .tech-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative; z-index: 2;
+    }
+    .tech-info { display: flex; align-items: center; gap: 0.85rem; }
+    .tech-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .btn-wa-tech {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+    .btn-wa-tech:hover { background: #1fb558; }
+    .timeline-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .timeline-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      position: relative;
+    }
+    .timeline-steps::before {
+      content: '';
+      position: absolute;
+      top: 15px; bottom: 15px; left: 15px;
+      width: 2px;
+      background: #E5E7EB;
+    }
+    .timeline-step {
+      display: flex;
+      gap: 1.4rem;
+      position: relative;
+    }
+    .step-marker {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: white;
+      border: 2.5px solid #D1D5DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: #9CA3AF;
+      flex-shrink: 0;
+      z-index: 2;
+    }
+    .timeline-step.completed .step-marker {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+    .timeline-step.active .step-marker {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
+      box-shadow: 0 0 0 4px rgba(232,114,12,0.2);
+    }
+    .step-content { flex: 1; }
+    .step-time { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .step-headline { font-weight: 600; font-size: 0.98rem; color: var(--text-dark); margin: 0.2rem 0 0.3rem; }
+    .step-desc { font-size: 0.86rem; color: var(--text-mid); line-height: 1.55; }
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .evidence-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--warm-white);
+    }
+    .evidence-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .evidence-body { padding: 0.9rem 1rem; }
+    .evidence-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.2rem;
+    }
+    .evidence-desc { font-size: 0.82rem; color: var(--text-dark); font-weight: 500; }
+    .cost-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.9rem;
+    }
+    .cost-row.total {
+      border-top: 2px solid var(--text-dark);
+      border-bottom: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-top: 0.8rem;
+      padding-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="portal-nav">
+  <a href="index.html"><img src="images/sawa-logo-transparent.svg" alt="Sawa Repairs Logo"></a>
+  <div class="portal-badge"><div class="pulse-dot"></div> Live Public Work Order Tracker</div>
+</div>
+
+<div class="tracker-container">
+
+  <!-- SEARCH TOKEN -->
+  <div class="lookup-card">
+    <div style="font-size: 0.84rem; font-weight: 600; color: var(--text-mid);">Tracking Token:</div>
+    <div class="lookup-input-wrap">
+      <i class="fas fa-ticket-alt" style="color: var(--orange);"></i>
+      <input type="text" id="tokenInput" value="SW-2026-084" placeholder="Enter tracking token (e.g. SW-2026-084)">
+    </div>
+    <button class="btn-lookup" onclick="updateTracker()">Lookup Ticket</button>
+  </div>
+
+  <!-- JOB HEADER -->
+  <div class="job-header-card">
+    <div class="job-meta-row">
+      <div>
+        <div style="font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6);">Work Order Reference</div>
+        <div class="job-id-tag" id="displayToken">#SW-2026-084</div>
+      </div>
+      <div class="job-status-pill"><i class="fas fa-tools"></i> <span id="displayStatus">In Progress — Parts Installed</span></div>
+    </div>
+
+    <div class="job-property-title" id="displayProperty">Rosewood Court, Apt 3B, Wood Avenue, Kilimani, Nairobi</div>
+    <div class="job-property-sub">
+      <span><i class="fas fa-wrench"></i> Emergency Guest Plumbing & Pressure Diagnostic</span>
+      <span>•</span>
+      <span>Logged Today: 08:45 EAT</span>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-info">
+        <div class="tech-avatar">JM</div>
+        <div>
+          <div style="font-size: 0.9rem; font-weight: 700;">John Mwangi</div>
+          <div style="font-size: 0.76rem; color: rgba(255,255,255,0.7);">Lead Plumbing & Certified EPRA Specialist</div>
+        </div>
+      </div>
+      <a href="https://wa.me/254797846126?text=Hello%20Sawa%20Repairs%2C%20checking%20status%20on%20ticket%20SW-2026-084" class="btn-wa-tech" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Chat with Field Team
+      </a>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-card">
+    <div class="timeline-title">
+      <span>Live Execution Timeline</span>
+      <span style="font-size: 0.8rem; font-family: var(--font-body); font-weight: 600; color: var(--orange);">Est. Completion: 11:30 EAT</span>
+    </div>
+
+    <div class="timeline-steps">
+      <div class="timeline-step completed">
+        <div class="step-marker"><i class="fas fa-check"></i></div>
+        <div class="step-content">
+          <div class="step-time">08:45 EAT • Received</div>
+          <div class="step-headline">Work Order Received & Logged</div>
+          <div class="step-desc">Host reported leaking cistern valve and weak pressure in master bath. Priority dispatch assigned.</div>
+        </div>
+      </div>
+
+      <div class="timeline-step completed">
+        <div class="step-marker"><i class="fas fa-check"></i></div>
+        <div class="step-content">
+          <div class="step-time">09:12 EAT • On Site</div>
+          <div class="step-headline">Technician Arrived & Diagnostic Video Sent</div>
+          <div class="step-desc">John Mwangi arrived on site, conducted pressure test (1.4 bar), and sent 45-second diagnostic video clip to owner.</div>
+        </div>
+      </div>
+
+      <div class="timeline-step completed">
+        <div class="step-marker"><i class="fas fa-check"></i></div>
+        <div class="step-content">
+          <div class="step-time">09:35 EAT • Quote Approved</div>
+          <div class="step-headline">Quote Approved Remotely by Owner via Portal</div>
+          <div class="step-desc">Work order authorized. Sawa Fix KES 1,500 diagnostic fee credited toward final bill.</div>
+        </div>
+      </div>
+
+      <div class="timeline-step active">
+        <div class="step-marker"><i class="fas fa-spinner fa-spin"></i></div>
+        <div class="step-content">
+          <div class="step-time">10:15 EAT • Current Action</div>
+          <div class="step-headline">Parts Replaced & Pressure System Re-testing</div>
+          <div class="step-desc">Installed heavy-duty brass float valve and replaced degraded flexi-pipe. Currently running a 15-minute pressure hold check.</div>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <div class="step-marker"><i class="fas fa-clock"></i></div>
+        <div class="step-content">
+          <div class="step-time">Pending (Est. 11:15 EAT)</div>
+          <div class="step-headline">Clean Site Sign-Off & 30-Day Guarantee Issued</div>
+          <div class="step-desc">Final completion report, invoice, and photo receipts dispatched to landlord WhatsApp/Email.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVIDENCE -->
+  <div class="timeline-card">
+    <div class="timeline-title">Verified Job Photographic Proof</div>
+    <div class="evidence-grid">
+      <div class="evidence-card">
+        <img src="images/gallery-3.jpg" alt="Before repair">
+        <div class="evidence-body">
+          <div class="evidence-tag">01 • Diagnostic Finding</div>
+          <div class="evidence-desc">Cracked intake seal causing silent cistern seepage</div>
+        </div>
+      </div>
+      <div class="evidence-card">
+        <img src="images/gallery-6.jpg" alt="During repair">
+        <div class="evidence-body">
+          <div class="evidence-tag">02 • Replacement Part</div>
+          <div class="evidence-desc">Heavy-duty brass valve fitted with verified seal</div>
+        </div>
+      </div>
+      <div class="evidence-card">
+        <img src="images/gallery-4.jpg" alt="Pressure test">
+        <div class="evidence-body">
+          <div class="evidence-tag">03 • Pressure Verification</div>
+          <div class="evidence-desc">Pressure stabilized at 2.8 Bar; zero leak detected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEMISED COST SUMMARY -->
+  <div class="cost-card">
+    <div class="timeline-title">Transparent Billing Breakdown</div>
+    <div class="cost-row">
+      <span>Sawa Fix Diagnostic Call-out (Travel + 30m Site Diagnostic)</span>
+      <span>KES 1,500</span>
+    </div>
+    <div class="cost-row">
+      <span>Diagnostic Fee Credit (Applied when repair proceeds)</span>
+      <span style="color: #25D366;">- KES 1,500</span>
+    </div>
+    <div class="cost-row">
+      <span>Labour: Cistern Dismantle, Brass Valve Fitting & Pressure Test</span>
+      <span>KES 3,200</span>
+    </div>
+    <div class="cost-row">
+      <span>Materials: Heavy Duty Brass Float Valve + Flexi Pipe (Hardware Receipt attached)</span>
+      <span>KES 1,850</span>
+    </div>
+    <div class="cost-row">
+      <span>Transparent 20% Parts Handling & Warranty Reserve</span>
+      <span>KES 370</span>
+    </div>
+    <div class="cost-row total">
+      <span>Total Verified Payable:</span>
+      <span>KES 5,420</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Check for ?token= in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  if (token) {
+    document.getElementById('tokenInput').value = token;
+    document.getElementById('displayToken').textContent = '#' + token.toUpperCase();
+  }
+
+  function updateTracker() {
+    const val = document.getElementById('tokenInput').value.trim();
+    if (!val) return;
+    document.getElementById('displayToken').textContent = '#' + val.toUpperCase();
+    const btn = document.querySelector('.btn-lookup');
+    btn.textContent = 'Updated!';
+    setTimeout(() => { btn.textContent = 'Lookup Ticket'; }, 1500);
+  }
+</script>
+
+</body>
+</html>

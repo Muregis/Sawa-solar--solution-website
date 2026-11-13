@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Maintenance Passport | Sawa Repairs Nairobi</title>
+  <meta name="description" content="Official 10-point Property Health Audit and Maintenance Passport for Nairobi landlords and diaspora property owners. Track health score, system audits, and repair history.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="images/sawa-logo-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="new-style.css">
+  <style>
+    body {
+      background: #F7F5F0;
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+    .portal-nav {
+      background: var(--dark);
+      padding: 1rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .portal-nav img { height: 44px; width: auto; }
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37,211,102,0.15);
+      border: 1px solid rgba(37,211,102,0.3);
+      color: #25D366;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+    }
+    .passport-container {
+      max-width: 920px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 5vw;
+    }
+    .passport-header-card {
+      background: linear-gradient(135deg, var(--dark) 0%, #152A20 100%);
+      color: white;
+      border-radius: 24px;
+      padding: 2.6rem 2.8rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .passport-header-card::after {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(232,114,12,0.2) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .passport-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--orange-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+    }
+    .passport-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .passport-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      position: relative; z-index: 2;
+    }
+    .meta-item-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+    .meta-item-val { font-size: 0.98rem; font-weight: 600; color: white; margin-top: 0.2rem; }
+    
+    /* Health Score Box */
+    .score-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .score-dial {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+    .score-num {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+    .score-max { font-size: 1.5rem; color: var(--text-muted); font-weight: 600; }
+    .score-badge {
+      display: inline-block;
+      background: #DCFCE7;
+      color: #166534;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-top: 0.5rem;
+    }
+    .score-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: #E5E7EB;
+      border-radius: 10px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      width: 82%;
+      background: linear-gradient(90deg, var(--green-light), var(--green));
+      border-radius: 10px;
+    }
+
+    /* 10-Point Checklist */
+    .audit-section-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+    .audit-headline {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-icon {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .check-icon.pass { background: #DCFCE7; color: #166534; }
+    .check-icon.warn { background: #FEF3C7; color: #B45309; }
+    .check-body { flex: 1; }
+    .check-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+    .check-name { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
+    .check-status-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .check-status-tag.pass { background: #DCFCE7; color: #166534; }
+    .check-status-tag.warn { background: #FEF3C7; color: #B45309; }
+    .check-notes { font-size: 0.84rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* Video Walkthrough Card */
+    .video-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+    .video-banner {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/gallery-8.jpg') center/cover no-repeat;
+      border-radius: 14px;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      cursor: pointer;
+    }
+    .video-play-btn {
+      width: 60px; height: 60px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      transition: all 0.2s ease;
+    }
+    .video-play-btn:hover { transform: scale(1.1); background: var(--orange-light); }
+
+    /* Action bar */
+    .passport-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .btn-pdf {
+      background: var(--dark);
+      color: white;
+      border: none;
+      padding: 0.95rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .btn-pdf:hover { background: #1C2921; }
+    .btn-wa-followup {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 0.95rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .btn-wa-followup:hover { background: #1fb558; }
+  </style>
+</head>
+<body>
+
+<div class="portal-nav">
+  <a href="index.html"><img src="images/sawa-logo-transparent.svg" alt="Sawa Repairs Logo"></a>
+  <div class="portal-badge"><i class="fas fa-shield-alt"></i> Official Maintenance Passport</div>
+</div>
+
+<div class="passport-container">
+
+  <!-- PASSPORT HEADER -->
+  <div class="passport-header-card">
+    <div class="passport-eyebrow"><i class="fas fa-id-card"></i> Sawa Property Passport • Verified Record</div>
+    <h1 class="passport-title">Kilimani Heights, Apt 4B</h1>
+    <div style="font-size: 0.95rem; color: rgba(255,255,255,0.75);">Wood Avenue, Kilimani, Nairobi • Managed for Diaspora Owner (Ref: DL-702)</div>
+
+    <div class="passport-meta-grid">
+      <div>
+        <div class="meta-item-label">Passport Token</div>
+        <div class="meta-item-val" id="displayPassport">#MP-2026-402</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Audit Date</div>
+        <div class="meta-item-val">14 November 2026</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Lead Inspector</div>
+        <div class="meta-item-val">Simon Karanja (EPRA Lic.)</div>
+      </div>
+      <div>
+        <div class="meta-item-label">Next Audit Due</div>
+        <div class="meta-item-val" style="color:var(--orange-light);">14 February 2027</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEALTH SCORE -->
+  <div class="score-card">
+    <div style="flex:1; min-width:240px;">
+      <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); letter-spacing:0.1em;">Overall Property Health Score</div>
+      <div class="score-dial">
+        <div class="score-num">82</div>
+        <div class="score-max">/ 100</div>
+      </div>
+      <div class="score-badge"><i class="fas fa-check-circle"></i> Sound Condition • 2 Preventive Items Flagged</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill"></div>
+      </div>
+    </div>
+    <div style="flex:1; min-width:240px; border-left:1px solid var(--border); padding-left:1.5rem;">
+      <div style="font-size:0.86rem; line-height:1.7; color:var(--text-mid);">
+        <strong>Executive Summary:</strong> Electricals and plumbing core infrastructure are in solid operating condition. Zero emergency water ingress or safety hazards found. Two minor preventive items noted (instant shower scaling and balcony drip flashing).
+      </div>
+    </div>
+  </div>
+
+  <!-- 10-POINT HEALTH AUDIT CHECKLIST -->
+  <div class="audit-section-card">
+    <div class="audit-headline">
+      <span>10-Point Technical Audit Breakdown</span>
+      <span style="font-size:0.8rem; font-family:var(--font-body); font-weight:600; color:var(--text-muted);">8 Passed • 2 Monitored</span>
+    </div>
+
+    <!-- 1 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">01. Main Water Supply & Meter Pressure</div>
+          <span class="check-status-tag pass">Passed (9/10)</span>
+        </div>
+        <div class="check-notes">Main incoming line pressure tested at 2.8 Bar. Isolation gate valve seals tight with zero spindle seepage.</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="check-item">
+      <div class="check-icon warn"><i class="fas fa-exclamation"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">02. Water Heating (Instant Shower & Solar Loop)</div>
+          <span class="check-status-tag warn">Preventive Care (7/10)</span>
+        </div>
+        <div class="check-notes">Master bath instant shower operational. Minor limescale accumulation on head orifices. Recommend descaling flush within 90 days.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">03. Waste Drainage & Under-Sink Traps</div>
+          <span class="check-status-tag pass">Passed (8/10)</span>
+        </div>
+        <div class="check-notes">Kitchen and guest bath traps cleared of food/grease buildup. Smooth flow with zero standing residue.</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">04. Toilet Cistern Valves, Seals & Flushing Mechanism</div>
+          <span class="check-status-tag pass">Passed (9/10)</span>
+        </div>
+        <div class="check-notes">Dual flush seals tight; no silent leak into bowl. Float shuts off accurately at 6-litre mark.</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">05. Consumer Unit, Circuit Breakers & RCD Trip Safety</div>
+          <span class="check-status-tag pass">Passed (10/10)</span>
+        </div>
+        <div class="check-notes">RCD trip test completed at 26ms (standard EPRA requirement <30ms). Breakers labeled clearly.</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">06. Sockets, Switches & Heavy Appliance Wiring</div>
+          <span class="check-status-tag pass">Passed (9/10)</span>
+        </div>
+        <div class="check-notes">Kitchen cooker point and fridge sockets verified. Earth continuity check confirmed zero floating earth.</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="check-item">
+      <div class="check-icon warn"><i class="fas fa-exclamation"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">07. Ceiling Moisture & Roof/Slab Ingress Check</div>
+          <span class="check-status-tag warn">Monitor (7/10)</span>
+        </div>
+        <div class="check-notes">Balcony soffit has superficial moisture bubbling from exterior rain splash. No structural slab dampness. Sealant recommended before next heavy rains.</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">08. Structural Plaster, Paint & Wall Crack Audit</div>
+          <span class="check-status-tag pass">Passed (8/10)</span>
+        </div>
+        <div class="check-notes">No active structural shifts. Typical settlement hairline fissures on non-loadbearing hallway partition.</div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">09. Wet-Area Tile Grout & Silicone Waterproofing</div>
+          <span class="check-status-tag pass">Passed (8/10)</span>
+        </div>
+        <div class="check-notes">Shower base silicone bead refreshed during audit. Grout lines intact with zero hollow tiles.</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="check-item">
+      <div class="check-icon pass"><i class="fas fa-check"></i></div>
+      <div class="check-body">
+        <div class="check-title-row">
+          <div class="check-name">10. Door Deadbolts, Window Latches & Security Hardware</div>
+          <span class="check-status-tag pass">Passed (9/10)</span>
+        </div>
+        <div class="check-notes">Main entrance steel grille lock lubricated and operates smoothly. Sliding balcony latch engages securely.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO WALKTHROUGH EMBED -->
+  <div class="video-card">
+    <div class="audit-headline">Quarterly Video Walkthrough Recording</div>
+    <div class="video-banner" onclick="window.open('https://wa.me/254797846126?text=Hello%20Sawa%2C%20I%20want%20to%20view%20my%20video%20walkthrough%20for%20Kilimani%20Heights%20MP-2026-402', '_blank')">
+      <div class="video-play-btn"><i class="fas fa-play" style="margin-left:4px;"></i></div>
+      <div style="font-weight:700; font-size:1.1rem; margin-bottom:0.2rem;">3-Minute Verified Property Walkthrough</div>
+      <div style="font-size:0.84rem; opacity:0.8;">Recorded 14 Nov 2026 by Simon Karanja • Unlisted Diaspora Stream</div>
+    </div>
+  </div>
+
+  <!-- PASSPORT ACTIONS -->
+  <div class="passport-actions">
+    <button class="btn-pdf" onclick="window.print()"><i class="fas fa-download"></i> Print / Save Passport (PDF)</button>
+    <a href="https://wa.me/254797846126?text=Hello%20Sawa%20Repairs%2C%20regarding%20Passport%20MP-2026-402%2C%20let%27s%20address%20the%20two%20preventive%20items" class="btn-wa-followup" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> Action Preventive Items
+    </a>
+  </div>
+
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  if (token) {
+    document.getElementById('displayPassport').textContent = '#' + token.toUpperCase();
+  }
+</script>
+
+</body>
+</html>
