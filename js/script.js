@@ -1,5 +1,5 @@
 /* ============================================================
-    SAWA REPAIRS & SOLUTIONS — Main JavaScript (Fixed)
+    SAWA REPAIRS & SOLUTIONS — Main JavaScript (Clean & Robust)
    ============================================================ */
 
 /* ── NAV SHADOW ON SCROLL ── */
@@ -23,24 +23,68 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 /* ── MOBILE MENU ── */
 const navLinksEl = document.querySelector('.nav-links');
+const hamburgerEl = document.querySelector('.hamburger');
+
 function toggleMenu() {
-  navLinksEl.classList.toggle('mobile-open');
-  document.body.classList.toggle('menu-open');
+  if (!navLinksEl) return;
+  const isOpen = navLinksEl.classList.contains('open') || navLinksEl.classList.contains('mobile-open');
+  navLinksEl.classList.toggle('open', !isOpen);
+  navLinksEl.classList.toggle('mobile-open', !isOpen);
+  if (hamburgerEl) hamburgerEl.classList.toggle('active', !isOpen);
+  document.body.classList.toggle('menu-open', !isOpen);
 }
 
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    navLinksEl.classList.remove('mobile-open');
+    if (navLinksEl) {
+      navLinksEl.classList.remove('open', 'mobile-open');
+    }
+    if (hamburgerEl) hamburgerEl.classList.remove('active');
     document.body.classList.remove('menu-open');
   });
 });
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth >= 900) {
-    navLinksEl.classList.remove('mobile-open');
+  if (window.innerWidth >= 900 && navLinksEl) {
+    navLinksEl.classList.remove('open', 'mobile-open');
+    if (hamburgerEl) hamburgerEl.classList.remove('active');
     document.body.classList.remove('menu-open');
   }
 });
+
+/* ── FAQ ACCORDION (Works across all pages) ── */
+document.addEventListener('click', (e) => {
+  const q = e.target.closest('.faq-q');
+  if (!q) return;
+  const item = q.closest('.faq-item');
+  if (!item) return;
+
+  const parentList = item.closest('.faq-list');
+  const wasOpen = item.classList.contains('open');
+
+  if (parentList) {
+    parentList.querySelectorAll('.faq-item.open').forEach(other => {
+      if (other !== item) other.classList.remove('open');
+    });
+  }
+
+  item.classList.toggle('open', !wasOpen);
+});
+
+/* Support inline onclick="toggleFaq(this)" for backwards compatibility */
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  if (item) item.classList.toggle('open');
+}
+
+/* ── THANK YOU MODAL ── */
+function closeTyModal() {
+  const modal = document.getElementById('ty-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+  }
+}
 
 /* ── GALLERY LIGHTBOX ── */
 const galleryImages = [];
@@ -50,17 +94,20 @@ function openLightbox(index) {
   if (!galleryImages.length) return;
   currentIndex = index;
   updateLightbox();
-  lightboxEl.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  if (lightboxEl) {
+    lightboxEl.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function updateLightbox() {
   const item = galleryImages[currentIndex];
-  document.getElementById('lightbox-img').src = item.src;
-  document.getElementById('lightbox-img').alt = item.alt;
-  document.getElementById('lightbox-caption').textContent = item.caption;
-  document.getElementById('lightbox-counter').textContent =
-    (currentIndex + 1) + ' / ' + galleryImages.length;
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  const cnt = document.getElementById('lightbox-counter');
+  if (img) { img.src = item.src; img.alt = item.alt; }
+  if (cap) cap.textContent = item.caption;
+  if (cnt) cnt.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
 }
 
 function lightboxNext() {
@@ -74,116 +121,55 @@ function lightboxPrev() {
 }
 
 function closeLightbox() {
-  lightboxEl.classList.remove('active');
+  if (lightboxEl) lightboxEl.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-const lightboxEl = document.createElement('div');
-lightboxEl.className = 'lightbox';
-lightboxEl.innerHTML = `
-  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
-  <button class="lightbox-prev" onclick="lightboxPrev()">&#8592;</button>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="">
-  <button class="lightbox-next" onclick="lightboxNext()">&#8594;</button>
-  <div class="lightbox-caption" id="lightbox-caption"></div>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
-`;
-document.body.appendChild(lightboxEl);
+const galleryDoms = document.querySelectorAll('.gallery-item img');
+let lightboxEl = null;
 
-document.querySelectorAll('.gallery-item img').forEach((img, i) => {
-  const caption = img.closest('.gallery-item')?.querySelector('.gallery-overlay span')?.textContent || '';
-  galleryImages.push({ src: img.src, alt: img.alt, caption });
-  img.style.cursor = 'zoom-in';
-  img.addEventListener('click', () => openLightbox(i));
-});
+if (galleryDoms.length > 0) {
+  lightboxEl = document.createElement('div');
+  lightboxEl.className = 'lightbox';
+  lightboxEl.innerHTML = `
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <button class="lightbox-prev" onclick="lightboxPrev()">&#8592;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-next" onclick="lightboxNext()">&#8594;</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  `;
+  document.body.appendChild(lightboxEl);
 
-lightboxEl.addEventListener('click', (e) => { if (e.target === lightboxEl) closeLightbox(); });
-
-document.addEventListener('keydown', (e) => {
-  if (!lightboxEl.classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') lightboxNext();
-  if (e.key === 'ArrowLeft') lightboxPrev();
-});
-
-/* ── GALLERY SCROLL ANIMATION ── */
-const galleryItems = document.querySelectorAll('.gallery-item');
-const galleryObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in-view');
-      galleryObs.unobserve(e.target);
-    }
+  galleryDoms.forEach((img, i) => {
+    const caption = img.closest('.gallery-item')?.querySelector('.gallery-overlay span')?.textContent || '';
+    galleryImages.push({ src: img.src, alt: img.alt, caption });
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openLightbox(i));
   });
-}, { threshold: 0.1 });
-galleryItems.forEach(item => galleryObs.observe(item));
 
-/* ── STATS COUNTER ── */
-const statsObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = +el.dataset.target;
-    const duration = 1200;
-    const startTime = performance.now();
-
-    function animate(now) {
-      const progress = Math.min((now - startTime) / duration, 1);
-      el.textContent = Math.floor(progress * target);
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        el.textContent = target;
-      }
-    }
-
-    requestAnimationFrame(animate);
-    observer.unobserve(el);
+  lightboxEl.addEventListener('click', (e) => {
+    if (e.target === lightboxEl) closeLightbox();
   });
-}, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-num[data-target]').forEach(el => {
-  statsObserver.observe(el);
-});
-
-/* ── CONTACT FORM ── */
-function submitForm(event) {
-  event.preventDefault();
-
-  const form = event.target;
-  const btn = form.querySelector('.form-submit');
-
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-  })
-  .then(() => {
-    btn.textContent = '✅ Request Sent!';
-    form.reset();
-  })
-  .catch(() => {
-    btn.textContent = '❌ Failed. Try again.';
-  })
-  .finally(() => {
-    setTimeout(() => {
-      btn.textContent = '📋 Send My Request →';
-      btn.disabled = false;
-    }, 4000);
+  document.addEventListener('keydown', (e) => {
+    if (!lightboxEl.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxNext();
+    if (e.key === 'ArrowLeft') lightboxPrev();
   });
 }
 
-/* ── ACTIVE NAV HIGHLIGHT ── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
-  });
-  navLinks.forEach(link => {
-    link.style.color = link.getAttribute('href') === '#' + current ? 'var(--green)' : '';
-  });
-});
+/* ── GALLERY SCROLL ANIMATION ── */
+const galleryItems = document.querySelectorAll('.gallery-item');
+if (galleryItems.length > 0) {
+  const galleryObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        galleryObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  galleryItems.forEach(item => galleryObs.observe(item));
+}
